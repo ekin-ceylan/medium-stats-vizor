@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Medium Stats Enhancer",
+  "version": "1.0",
+  "description": "Medium istatistik satırlarına 'Detay Al' butonu ekler.",
+  "permissions": [
+    "tabs",
+    "https://medium.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://medium.com/me/stats*"],
+      "js": ["content.js"]
+    }
+  ]
+}
