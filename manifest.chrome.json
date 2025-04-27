@@ -1,9 +1,10 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Medium Stats Enhancer",
     "version": "1.0",
     "description": "Adds 'Today Views' and 'Today Reads' columns to Medium Stats, updating them in real-time without reloading.",
-    "permissions": ["https://medium.com/*"],
+    "permissions": [],
+    "host_permissions": ["https://medium.com/*"],
     "content_scripts": [
         {
             "matches": ["https://medium.com/me/stats*"],
