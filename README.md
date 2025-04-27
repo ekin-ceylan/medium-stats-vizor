@@ -8,7 +8,7 @@ Enhances Medium's stats page by adding real-time "Today Views" and "Today Reads"
 -   Fetches and updates the data in real-time without refreshing the page.
 -   Lightweight and integrates smoothly with Medium's original design.
 
-## 🚀 Installation
+## Installation
 
 ### Firefox
 
@@ -30,7 +30,7 @@ Enhances Medium's stats page by adding real-time "Today Views" and "Today Reads"
 
 > **Note:** This project uses a separate manifest for Chrome (manifest v3). Be sure to rename `manifest.chrome.json` to `manifest.json` before loading.
 
-## 📖 Usage
+## Usage
 
 1. Go to your Medium Stats page:  
    [`https://medium.com/me/stats`](https://medium.com/me/stats)
@@ -51,12 +51,12 @@ Enhances Medium's stats page by adding real-time "Today Views" and "Today Reads"
 -   **Today Reads:** _All Reads (Member Reads)_  
     Displays the total number of reads today (including both members and non-members), with member reads shown in parentheses.
 
-## 📌 Notes
+## Notes
 
 -   Future plans include:
     -   Bulk fetching all today's stats automatically
     -   Exporting stats as CSV
 
-## 📜 License
+## License
 
 MIT License
