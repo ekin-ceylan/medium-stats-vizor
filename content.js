@@ -1,19 +1,29 @@
 function addButtons() {
-    const rows = document.querySelectorAll(
-        'table.kp.bh.kq.kr.ks.kt.ku.kv.kw.kx.ky.kz.la.lb.lc tbody tr'
-    ); // Medium stats table satırları
-    console.clear();
+    const desktopQuery = 'table.kp.bh.kq.kr.ks.kt.ku.kv.kw.kx.ky.kz.la.lb.lc tbody tr';
+    const mobileQuery = 'div.ab.cd > div > div > a.ag.ah.ai.aj.ak.al.am.an.ao.ap.aq.ar.as.at.au';
+    let earningQuery = 'td:nth-child(5)';
+    let detailsQuery = 'p.bf.b.cp.z.co .ab.q';
+
+    let rows = document.querySelectorAll(desktopQuery);
+
+    if (rows.length === 0) {
+        rows = document.querySelectorAll(mobileQuery);
+        earningQuery = 'div.ab:last-child > div:nth-child(3)';
+        detailsQuery = '.ab.q';
+    }
+
     rows.forEach(row => {
         if (row.querySelector('.fetch-stats-btn')) return; // Zaten ekli ise tekrar ekleme
 
-        const fifthCell = row.querySelector('td:nth-child(5)');
-        const details = row.querySelector('p.bf.b.cp.z.co .ab.q');
-        const button = createButton(row);
-        const viewCell = createCell(fifthCell, 'Views');
-        const readCell = createCell(fifthCell, 'Reads');
+        const earning = row.querySelector(earningQuery);
+        const details = row.querySelector(detailsQuery);
 
-        row.insertBefore(viewCell, fifthCell);
-        row.insertBefore(readCell, fifthCell);
+        const button = createButton(row);
+        const viewCell = createCell(earning, 'Views');
+        const readCell = createCell(earning, 'Reads');
+
+        earning.parentNode.insertBefore(viewCell, earning);
+        earning.parentNode.insertBefore(readCell, earning);
         details.appendChild(button);
     });
 }
@@ -39,7 +49,7 @@ function createButton(row) {
 
 function createCell(template, text) {
     const td = template.cloneNode(true);
-    const contents = td.querySelectorAll('p');
+    const contents = td.querySelectorAll('p,span');
     contents[0].className += ' today-' + text.toLowerCase();
     contents[0].innerText = '-';
     contents[1].innerText = 'Today ' + text;
@@ -129,7 +139,7 @@ function getNow() {
 
 function getId(row) {
     const link = row.querySelector('a[href*="/me/stats/post/"]');
-    const href = link.getAttribute('href');
+    const href = link?.getAttribute('href') || row.getAttribute('href');
     const postIdMatch = href.match(/\/post\/([^/?]+)/);
 
     return postIdMatch[1];
@@ -148,7 +158,7 @@ function updateResults(row, results) {
 
 function getInfoCell(all, member) {
     return `<span>${all}</span>
-        <span style="font-size:14px;font-weight:300">(<span style="color:#ff9a00;font-weight:500">${member}</span>)</span>`;
+        <span style="font-size:14px">(<span>${member}</span>)</span>`;
 }
 
 function Results() {
