@@ -22,9 +22,10 @@ function createButton(row) {
     const id = getId(row);
     const button = document.createElement('button');
     button.innerText = 'Get Today';
-    button.className = 'fetch-stats-btn';
-    button.style.marginLeft = 'auto';
-    button.style.padding = '2px 5px';
+    button.className =
+        'fetch-stats-btn bf b ft fu fv fw fx fy fz ga gb gc gd ge gf gg gh bk gi gj gk gl gm gn go gp gq gr gs gt gu gv ch dg bm gw gx';
+    button.style.margin = '0px 10px 0 22px';
+    button.style.padding = '0px 8px';
     button.style.fontSize = '12px';
 
     button.onclick = event => {
@@ -159,7 +160,22 @@ function Results() {
     this.allReads = () => this.memberReads + this.nonMemberReads;
 }
 
-// Sayfa tamamen yüklenince butonları ekle
+function observePageChanges() {
+    const observer = new MutationObserver((mutationsList, observer) => {
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                addButtons(); // DOM değiştiyse butonları yeniden ekle
+            }
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true, // Alt dallardaki değişimleri de izle
+    });
+}
+
 window.addEventListener('load', () => {
-    setTimeout(addButtons, 1000); // Medium geç yükleniyor, biraz bekliyoruz
+    setTimeout(addButtons, 500); // İlk yüklemede çalıştır
+    observePageChanges(); // Sonrasında DOM'u izle
 });
