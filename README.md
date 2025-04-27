@@ -22,13 +22,13 @@ Enhances Medium's stats page by adding real-time "Today Views" and "Today Reads"
 ### Chrome
 
 1. Clone or download this repository.
-2. Rename manifest.chrome.json to manifest.json.
-3. Open Chrome and go to chrome://extensions/.
+2. Rename `manifest.chrome.json` to `manifest.json`.
+3. Open Chrome and go to `chrome://extensions/`.
 4. Enable Developer mode (top right).
-5. Click on "Load unpacked".
+5. Click on **"Load unpacked"**.
 6. Select the folder containing the updated manifest.json and content.js.
 
-> **Note:** This project uses a separate manifest for Chrome (manifest v3). Be sure to rename manifest.chrome.json to manifest.json before loading.
+> **Note:** This project uses a separate manifest for Chrome (manifest v3). Be sure to rename `manifest.chrome.json` to `manifest.json` before loading.
 
 ## 📖 Usage
 
