@@ -25,6 +25,7 @@ function addButtons() {
         earning.parentNode.insertBefore(viewCell, earning);
         earning.parentNode.insertBefore(readCell, earning);
         details.appendChild(button);
+        button.click(); 
     });
 }
 
