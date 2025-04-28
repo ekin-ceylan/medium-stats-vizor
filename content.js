@@ -1,9 +1,34 @@
 function addButtons() {
     const desktopQuery = 'table.kp.bh.kq.kr.ks.kt.ku.kv.kw.kx.ky.kz.la.lb.lc tbody tr';
     const mobileQuery = 'div.ab.cd > div > div > a.ag.ah.ai.aj.ak.al.am.an.ao.ap.aq.ar.as.at.au';
+    const dotQuery = '.nz.oa.l';
     let earningQuery = 'td:nth-child(5)';
     let detailsQuery = 'p.bf.b.cp.z.co .ab.q';
+    const styles = `
+.fetch-stats-btn {
+    border: none;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 10px;
+    margin-bottom: -3px;
+}
 
+    .fetch-stats-btn:hover {
+        background-color: #eee;
+        cursor: pointer;
+    }
+
+    .fetch-stats-btn.active svg {
+        animation: spin 0.5s linear infinite;
+        transform-origin: center center;
+    }
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}`;
+
+    injectStyles('fetch-stats-btn-styles', styles);
     let rows = document.querySelectorAll(desktopQuery);
 
     if (rows.length === 0) {
@@ -13,10 +38,11 @@ function addButtons() {
     }
 
     rows.forEach(row => {
-        if (row.querySelector('.fetch-stats-btn')) return; // Zaten ekli ise tekrar ekleme
+        if (row.querySelector('.fetch-stats-btn')) return; // Already added
 
         const earning = row.querySelector(earningQuery);
         const details = row.querySelector(detailsQuery);
+        const dot = details.querySelector(dotQuery).cloneNode(true);
 
         const button = createButton(row);
         const viewCell = createCell(earning, 'Views');
@@ -24,25 +50,31 @@ function addButtons() {
 
         earning.parentNode.insertBefore(viewCell, earning);
         earning.parentNode.insertBefore(readCell, earning);
+        details.appendChild(dot);
         details.appendChild(button);
-        button.click(); 
+        button.click();
     });
 }
 
 function createButton(row) {
     const id = getId(row);
     const button = document.createElement('button');
-    button.innerText = 'Get Today';
-    button.className =
-        'fetch-stats-btn bf b ft fu fv fw fx fy fz ga gb gc gd ge gf gg gh bk gi gj gk gl gm gn go gp gq gr gs gt gu gv ch dg bm gw gx';
-    button.style.margin = '0px 10px 0 22px';
-    button.style.padding = '0px 8px';
-    button.style.fontSize = '12px';
+    button.innerHTML = `<svg viewBox="0 0 489.698 489.698" height="16px" width="16px" fill="#6b6b6b">
+            <g>
+                <g>
+                    <path d="M468.999,227.774c-11.4,0-20.8,8.3-20.8,19.8c-1,74.9-44.2,142.6-110.3,178.9c-99.6,54.7-216,5.6-260.6-61l62.9,13.1    c10.4,2.1,21.8-4.2,23.9-15.6c2.1-10.4-4.2-21.8-15.6-23.9l-123.7-26c-7.2-1.7-26.1,3.5-23.9,22.9l15.6,124.8    c1,10.4,9.4,17.7,19.8,17.7c15.5,0,21.8-11.4,20.8-22.9l-7.3-60.9c101.1,121.3,229.4,104.4,306.8,69.3    c80.1-42.7,131.1-124.8,132.1-215.4C488.799,237.174,480.399,227.774,468.999,227.774z"/>
+                    <path d="M20.599,261.874c11.4,0,20.8-8.3,20.8-19.8c1-74.9,44.2-142.6,110.3-178.9c99.6-54.7,216-5.6,260.6,61l-62.9-13.1    c-10.4-2.1-21.8,4.2-23.9,15.6c-2.1,10.4,4.2,21.8,15.6,23.9l123.8,26c7.2,1.7,26.1-3.5,23.9-22.9l-15.6-124.8    c-1-10.4-9.4-17.7-19.8-17.7c-15.5,0-21.8,11.4-20.8,22.9l7.2,60.9c-101.1-121.2-229.4-104.4-306.8-69.2    c-80.1,42.6-131.1,124.8-132.2,215.3C0.799,252.574,9.199,261.874,20.599,261.874z"/>
+                </g>
+            </g>
+        </svg>`;
+    button.className = 'fetch-stats-btn';
 
-    button.onclick = event => {
+    button.onclick = async event => {
         event.stopPropagation();
         event.preventDefault();
-        getData(row, id);
+        button.classList.add('active');
+        await getData(row, id);
+        button.classList.remove('active');
     };
 
     return button;
@@ -87,7 +119,7 @@ async function getData(row, id) {
                 }
             });
 
-            updateResults(row, results);
+            if (results.allViews()) updateResults(row, results);
         } else {
             console.log('❗ Data not found');
         }
@@ -171,22 +203,40 @@ function Results() {
     this.allReads = () => this.memberReads + this.nonMemberReads;
 }
 
+function injectStyles(styleId, styleText) {
+    if (!styleId || !styleText || document.getElementById(styleId)) {
+        return;
+    }
+
+    const clean = styleText
+        .replace(/(^\s+)|\n|(\s+$)/gm, '') // Remove newlines and leading/trailing spaces
+        .replace(/\s*;?\s*}\s*/g, '}') // Remove any unnecessary spaces around '}' and the last ';'
+        .replace(/\s*{\s*/g, '{') // Remove unnecessary spaces around '{'
+        .replace(/\s*:\s*/g, ':') // Remove unnecessary spaces around ':'
+        .trim();
+
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = clean;
+    document.head.appendChild(style);
+}
+
 function observePageChanges() {
     const observer = new MutationObserver((mutationsList, observer) => {
         for (const mutation of mutationsList) {
             if (mutation.type === 'childList') {
-                addButtons(); // DOM değiştiyse butonları yeniden ekle
+                addButtons(); // Add buttons when DOM changes
             }
         }
     });
 
     observer.observe(document.body, {
         childList: true,
-        subtree: true, // Alt dallardaki değişimleri de izle
+        subtree: true, // Watch changes in all child nodes
     });
 }
 
 window.addEventListener('load', () => {
-    setTimeout(addButtons, 500); // İlk yüklemede çalıştır
-    observePageChanges(); // Sonrasında DOM'u izle
+    setTimeout(addButtons, 500); // Run for the first time
+    observePageChanges(); // Watch for changes in the DOM
 });
