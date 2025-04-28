@@ -1,6 +1,9 @@
 # Medium Stats Enhancer
-
 Enhances Medium's stats page by adding real-time "Today Views" and "Today Reads" information for each story.
+
+![Medium Stats Enhancer Screenshot](screenshot.png)
+
+> The extension seamlessly adds today’s statistics to your Medium stories without altering the page layout.
 
 ## ✨ Features
 
@@ -41,17 +44,10 @@ medium-stats-enhancer/
 > **Note:** This project uses a separate manifest for Chrome (manifest v3). Be sure to rename `manifest.chrome.json` to `manifest.json` before loading.
 
 ## 📖 Usage
-
-1. Go to your Medium Stats page:  
-   [`https://medium.com/me/stats`](https://medium.com/me/stats)
-2. You will see new **Get Today** buttons added next to each story.
+1. Go to your Medium Stats page: [`https://medium.com/me/stats`](https://medium.com/me/stats)
+2. You will see new **Refresh** buttons added next to each story.
 3. Click the button to fetch today's views and reads for that story.
-
-### Screenshot
-
-![Medium Stats Enhancer Screenshot](screenshot.png)
-
-> The extension seamlessly adds today’s statistics to your Medium stories without altering the page layout.
+4. It also fetchs today's stats when the page first loads.
 
 ### Today Views and Today Reads Explained
 -   **Today Views:** _All Views (Member Views)_  
