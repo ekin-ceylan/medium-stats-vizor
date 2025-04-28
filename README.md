@@ -47,7 +47,7 @@ medium-stats-enhancer/
 1. Go to your Medium Stats page: [`https://medium.com/me/stats`](https://medium.com/me/stats)
 2. You will see new **Refresh** buttons added next to each story.
 3. Click the button to fetch today's views and reads for that story.
-4. It also fetchs today's stats when the page first loads.
+4. It also fetches today's stats when the page first loads.
 
 ### Today Views and Today Reads Explained
 -   **Today Views:** _All Views (Member Views)_  
@@ -67,8 +67,6 @@ If you would like to contribute:
 > For major changes, please open an issue first to discuss what you would like to change.
 
 ## 🛣️ Roadmap
-- Bulk fetching all today's stats automatically
-- Exporting today's stats as CSV
 - Adding better error handling (retry on failure)
 - Chrome Web Store and Firefox Add-ons publication
 
