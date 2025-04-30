@@ -1,9 +1,12 @@
 function addButtons() {
-    const desktopQuery = 'table.kp.bh.kq.kr.ks.kt.ku.kv.kw.kx.ky.kz.la.lb.lc tbody tr';
-    const mobileQuery = 'div.ab.cd > div > div > a.ag.ah.ai.aj.ak.al.am.an.ao.ap.aq.ar.as.at.au';
-    const dotQuery = '.nz.oa.l';
+    console.clear();
+    const desktopQuery = 'table tbody tr';
+    const mobileQuery = 'div:has(> a + a) > a';
+    const dotQuery = 'div:nth-child(2)';
+    let detailsQuery = 'td:nth-child(2) > a > div > div > p > div';
+    let viewQuery = 'td:nth-child(3)';
+    let readQuery = 'td:nth-child(4)';
     let earningQuery = 'td:nth-child(5)';
-    let detailsQuery = 'p.bf.b.cp.z.co .ab.q';
     const styles = `
 .fetch-stats-btn {
     border: none;
@@ -23,6 +26,10 @@ function addButtons() {
         transform-origin: center center;
     }
 
+td p {
+    white-space: nowrap;
+}
+
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -33,23 +40,44 @@ function addButtons() {
 
     if (rows.length === 0) {
         rows = document.querySelectorAll(mobileQuery);
+        viewQuery = 'div.ab:last-child > div:nth-child(1)';
+        readQuery = 'div.ab:last-child > div:nth-child(2)';
         earningQuery = 'div.ab:last-child > div:nth-child(3)';
         detailsQuery = '.ab.q';
     }
 
+    console.log(`Found ${rows.length} rows`);
+
     rows.forEach(row => {
         if (row.querySelector('.fetch-stats-btn')) return; // Already added
 
+        const viewsCell = row.querySelector(viewQuery);
+        const views = viewsCell.querySelectorAll('p,span');
+        const readsCell = row.querySelector(readQuery);
+        const reads = readsCell.querySelectorAll('p,span');
         const earning = row.querySelector(earningQuery);
         const details = row.querySelector(detailsQuery);
-        const dot = details.querySelector(dotQuery).cloneNode(true);
 
+        const viewsCount = Number(views[0].innerText);
+        const readsCount = Number(reads[0].innerText);
+        const percent = Math.round((readsCount / viewsCount) * 100);
+        const percentText = isNaN(percent) ? '-' : `${percent}%`;
+
+        const dot = details.querySelector(dotQuery).cloneNode(true);
         const button = createButton(row);
+
         const viewCell = createCell(earning, 'Views');
         const readCell = createCell(earning, 'Reads');
+        const earnCell = createCell(earning, 'Last Day');
 
         earning.parentNode.insertBefore(viewCell, earning);
         earning.parentNode.insertBefore(readCell, earning);
+        earning.parentNode.insertBefore(earnCell, earning);
+
+        views[0].innerHTML = getInfoCell(percentText, `${readsCount}/${viewsCount}`);
+        views[1].innerText = 'Reads / Views';
+        readsCell.remove();
+
         details.appendChild(dot);
         details.appendChild(button);
         button.click();
@@ -82,10 +110,11 @@ function createButton(row) {
 
 function createCell(template, text) {
     const td = template.cloneNode(true);
+    const className = text.replace('/', ' ').toLowerCase().split(' ').join('-');
     const contents = td.querySelectorAll('p,span');
-    contents[0].className += ' today-' + text.toLowerCase();
+    contents[0].classList.add(className);
     contents[0].innerText = '-';
-    contents[1].innerText = 'Today ' + text;
+    contents[1].innerText = text;
 
     return td;
 }
@@ -179,8 +208,8 @@ function getId(row) {
 }
 
 function updateResults(row, results) {
-    const viewsCell = row.querySelector('.today-views');
-    const readsCell = row.querySelector('.today-reads');
+    const viewsCell = row.querySelector('.views');
+    const readsCell = row.querySelector('.reads');
 
     const views = getInfoCell(results.allViews(), results.memberViews);
     const reads = getInfoCell(results.allReads(), results.memberReads);
@@ -190,8 +219,7 @@ function updateResults(row, results) {
 }
 
 function getInfoCell(all, member) {
-    return `<span>${all}</span>
-        <span style="font-size:14px">(<span>${member}</span>)</span>`;
+    return `<span>${all}</span> <small>(<span>${member}</span>)</small>`;
 }
 
 function Results() {
