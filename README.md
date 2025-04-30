@@ -1,14 +1,27 @@
 # Medium Stats Enhancer
-
 Enhances Medium's stats page by adding real-time "Today Views" and "Today Reads" information for each story.
+The extension seamlessly adds today’s statistics to your Medium stories without altering the page layout.
+> ⚠️ **Disclaimer:** This tool is unofficial and not affiliated with Medium. It only reads publicly available data from your own account for convenience.
 
-## Features
+## ✨ Features
 
 -   Adds **Today Views** and **Today Reads** columns to your Medium stats page.
 -   Fetches and updates the data in real-time without refreshing the page.
 -   Lightweight and integrates smoothly with Medium's original design.
 
-## Installation
+![Medium Stats Enhancer Screenshot](screenshot.png)
+
+## 📦 Project Structure
+```
+medium-stats-enhancer/
+├── manifest.json (for Firefox) 
+├── manifest.chrome.json (for Chrome, needs renaming) 
+├── content.js 
+├── README.md 
+└── screenshot.png
+```
+
+## 🚀 Installation
 
 ### Firefox
 
@@ -30,33 +43,33 @@ Enhances Medium's stats page by adding real-time "Today Views" and "Today Reads"
 
 > **Note:** This project uses a separate manifest for Chrome (manifest v3). Be sure to rename `manifest.chrome.json` to `manifest.json` before loading.
 
-## Usage
-
-1. Go to your Medium Stats page:  
-   [`https://medium.com/me/stats`](https://medium.com/me/stats)
-2. You will see new **Get Today** buttons added next to each story.
+## 📖 Usage
+1. Go to your Medium Stats page: [`https://medium.com/me/stats`](https://medium.com/me/stats)
+2. You will see new **Refresh** buttons added next to each story.
 3. Click the button to fetch today's views and reads for that story.
-
-### Screenshot
-
-![Medium Stats Enhancer Screenshot](screenshot.png)
-
-> The extension seamlessly adds today’s statistics to your Medium stories without altering the page layout.
+4. It also fetches today's stats when the page first loads.
 
 ### Today Views and Today Reads Explained
-
 -   **Today Views:** _All Views (Member Views)_  
     Displays the total number of views today (including both members and non-members), with member views shown in parentheses.
 
 -   **Today Reads:** _All Reads (Member Reads)_  
     Displays the total number of reads today (including both members and non-members), with member reads shown in parentheses.
 
-## Notes
+## 🤝 Contributing
+Contributions are welcome!
 
--   Future plans include:
-    -   Bulk fetching all today's stats automatically
-    -   Exporting stats as CSV
+If you would like to contribute:
+- Please **fork** this repository.
+- Create a new branch for your changes.
+- Open a **Pull Request** describing your updates.
 
-## License
+> For major changes, please open an issue first to discuss what you would like to change.
+
+## 🛣️ Roadmap
+- Adding better error handling (retry on failure)
+- Chrome Web Store and Firefox Add-ons publication
+
+## 📜 License
 
 MIT License
