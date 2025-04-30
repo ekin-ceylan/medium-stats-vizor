@@ -26,7 +26,7 @@ function addButtons() {
         transform-origin: center center;
     }
 
-td p {
+td p, a span {
     white-space: nowrap;
 }
 
@@ -40,9 +40,9 @@ td p {
 
     if (rows.length === 0) {
         rows = document.querySelectorAll(mobileQuery);
-        viewQuery = 'div.ab:last-child > div:nth-child(1)';
-        readQuery = 'div.ab:last-child > div:nth-child(2)';
-        earningQuery = 'div.ab:last-child > div:nth-child(3)';
+        viewQuery = 'a > div:last-child > div:nth-child(1)';
+        readQuery = 'a > div:last-child > div:nth-child(2)';
+        earningQuery = 'a > div:last-child > div:nth-child(3)';
         detailsQuery = '.ab.q';
     }
 
