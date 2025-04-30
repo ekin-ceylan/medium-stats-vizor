@@ -69,6 +69,7 @@ If you would like to contribute:
 ## 🛣️ Roadmap
 - Adding better error handling (retry on failure)
 - Chrome Web Store and Firefox Add-ons publication
+- Better JS structure
 
 ## 📜 License
 
