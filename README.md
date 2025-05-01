@@ -35,7 +35,7 @@ medium-stats-enhancer/
 └── .gitignore
 ```
 
-## 🚀 Installation
+## 🚀 Quick Start (Local Installation)
 > Works in both **Chrome** and **Firefox** (Manifest V3 compatible)
 
 ### 1. Clone the repository
