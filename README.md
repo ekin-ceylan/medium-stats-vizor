@@ -11,7 +11,7 @@ The extension seamlessly adds today’s statistics to your Medium stories withou
 -   Fetches and updates the data in real-time without refreshing the page.
 -   Lightweight and integrates smoothly with Medium's original design.
 
-![Medium Stats Enhancer Screenshot](images/screenshot.png)
+![Medium Stats Enhancer Screenshot](src/images/screenshot.png)
 
 ## 📦 Project Structure
 
