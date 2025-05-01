@@ -36,26 +36,34 @@ medium-stats-enhancer/
 ```
 
 ## 🚀 Installation
+> Works in both **Chrome** and **Firefox** (Manifest V3 compatible)
 
-### Firefox
+### 1. Clone the repository
+```
+git clone https://github.com/ekin-ceylan/medium-stats-enhancer.git
+cd medium-stats-enhancer
+```
 
-1. Clone or download this repository.
-2. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
-3. Click on **"Load Temporary Add-on"**.
-4. Select the `manifest.json` file inside the downloaded folder.
+### 2. Install dependencies and build
+```
+npm install
+npm run build
+```
+
+### 3. Load the extension
+
+#### Firefox
+1. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
+2. Click on **"Load Temporary Add-on"**.
+3. Select the `manifest.json` file inside the downloaded folder.
 
 > **Note:** This is a temporary installation. The extension will be removed when you close Firefox. You can reload it anytime through `about:debugging`.
 
-### Chrome
-
-1. Clone or download this repository.
-2. Rename `manifest.chrome.json` to `manifest.json`.
-3. Open Chrome and go to `chrome://extensions/`.
-4. Enable Developer mode (top right).
-5. Click on **"Load unpacked"**.
-6. Select the folder containing the updated manifest.json and content.js.
-
-> **Note:** This project uses a separate manifest for Chrome (manifest v3). Be sure to rename `manifest.chrome.json` to `manifest.json` before loading.
+#### Chrome
+1. Open Chrome and go to `chrome://extensions/`.
+2. Enable Developer mode (top right).
+3. Click on **"Load unpacked"**.
+4. Select the root project folder
 
 ## 📖 Usage
 
@@ -64,7 +72,7 @@ medium-stats-enhancer/
 3. Click the button to fetch today's views and reads for that story.
 4. It also fetches today's stats when the page first loads.
 
-### Today Views and Today Reads Explained
+### Display Explanation
 
 -   **Today Views:** _All Views (Member Views)_  
     Displays the total number of views today (including both members and non-members), with member views shown in parentheses.
@@ -88,8 +96,9 @@ If you would like to contribute:
 
 -   Adding better error handling (retry on failure)
 -   Chrome Web Store and Firefox Add-ons publication
--   Better JS structure
+-   RefreshAll Button
 
 ## 📜 License
 
-MIT License
+MIT — feel free to use and modify this project.
+Please attribute if you fork or extend it publicly.
