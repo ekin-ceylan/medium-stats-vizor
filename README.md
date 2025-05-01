@@ -17,11 +17,22 @@ The extension seamlessly adds today’s statistics to your Medium stories withou
 
 ```
 medium-stats-enhancer/
-├── manifest.json (for Firefox)
-├── manifest.chrome.json (for Chrome, needs renaming)
-├── content.js
+├── src/
+│   ├── main.js               # Entry point
+│   ├── images/
+│   │   └── screenshot.png
+│   ├── models/
+│   │   └── result.js
+│   └── modules/
+│       ├── extend.js
+│       ├── fetch-stats.js
+│       └── utilities.js
+├── manifest.json
 ├── README.md
-└── screenshot.png
+├── .editorconfig
+├── .prettierrc
+├── .prettierignore
+└── .gitignore
 ```
 
 ## 🚀 Installation
