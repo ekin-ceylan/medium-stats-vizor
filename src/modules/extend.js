@@ -1,5 +1,5 @@
 import { injectStyles, createCell, createCellInfo, getUTCMidnight } from './utilities.js';
-import getStats from './fetch-helper.js';
+import getStats from './fetch-stats.js';
 import Result from '../models/result.js';
 
 const styleName = 'enhanced-stats-styles';
