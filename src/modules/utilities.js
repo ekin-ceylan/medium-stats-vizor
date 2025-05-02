@@ -1,7 +1,9 @@
+import { INFO_SELECTOR } from '../modules/constants.js';
+
 export function createCell(template, text) {
     const cell = template.cloneNode(true);
     const className = text.replace('/', ' ').toLowerCase().split(' ').join('-');
-    const contents = cell.querySelectorAll('p,span');
+    const contents = cell.querySelectorAll(INFO_SELECTOR);
     contents[0].classList.add(className);
     contents[0].innerText = '-';
     contents[1].innerText = text;

@@ -1,6 +1,5 @@
 import { getUTCMidnight } from './utilities.js';
-
-const oneDay = 86400000; // 24 hours in milliseconds
+import { MEDIUM_GRAPHQL_URL, MS_PER_DAY } from './constants.js';
 
 async function getStats(id, isPremium = false) {
     const body = [
@@ -11,7 +10,7 @@ async function getStats(id, isPremium = false) {
         },
     ];
 
-    const response = await fetch('https://medium.com/_/graphql', {
+    const response = await fetch(MEDIUM_GRAPHQL_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -63,7 +62,7 @@ function createVariables(postId, isPremium) {
     };
 
     if (isPremium) {
-        const startAt = endAt - oneDay;
+        const startAt = endAt - MS_PER_DAY;
         variables.postStatsDailyBundleInput.fromDayStartsAt = startAt;
         variables['endAt'] = endAt;
         variables['startAt'] = startAt;
