@@ -24,6 +24,7 @@ medium-stats-enhancer/
 │   ├── models/
 │   │   └── result.js
 │   └── modules/
+│       ├── constants.js
 │       ├── extend.js
 │       ├── fetch-stats.js
 │       └── utilities.js
