@@ -1,6 +1,6 @@
 // prettier-ignore
 import { MS_PER_DAY, REFRESH_SVG, ENHANCED_PAGE_STYLES,BUTTON_CLASS_NAME, INFO_SELECTOR, BUTTON_SELECTOR,
-    DOT_SELECTOR, DESKTOP_BREAKPOINT, ACTIVE_CLASS_NAME, ASTERISK_SELECTOR } from './constants.js';
+    DOT_SELECTOR, DESKTOP_BREAKPOINT, ACTIVE_CLASS_NAME, ASTERISK_SELECTOR, STYLE_NAME } from './constants.js';
 import { injectStyles, createCell, createCellInfo, getUTCMidnight } from './utilities.js';
 import getStats from './fetch-stats.js';
 import Result from '../models/result.js';

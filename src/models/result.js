@@ -8,5 +8,5 @@ export default function Result() {
 
     Object.defineProperty(this, 'AllViews', { get: () => this.MemberViews + this.NonMemberViews });
     Object.defineProperty(this, 'AllReads', { get: () => this.MemberReads + this.NonMemberReads });
-    Object.defineProperty(this, 'TxtEarns', { get: () => `$${0.01 * this.YesterdayEarnings}` });
+    Object.defineProperty(this, 'TxtEarns', { get: () => `$${(0.01 * this.YesterdayEarnings).toFixed(2)}` });
 }
