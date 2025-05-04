@@ -31,7 +31,7 @@ npm run build
 #### Firefox
 1. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
 2. Click on **"Load Temporary Add-on"**.
-3. Select the `manifest.json` file inside the downloaded folder.
+3. Select the `manifest.json` file inside the `/dist` folder.
 
 > **Note:** This is a temporary installation. The extension will be removed when you close Firefox. You can reload it anytime through `about:debugging`.
 
@@ -39,7 +39,7 @@ npm run build
 1. Open Chrome and go to `chrome://extensions/`.
 2. Enable Developer mode (top right).
 3. Click on **"Load unpacked"**.
-4. Select the root project folder
+4. Select the `/dist` folder
 
 ## 📖 Usage
 
