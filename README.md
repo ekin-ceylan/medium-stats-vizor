@@ -70,7 +70,8 @@ medium-stats-enhancer/
 │       ├── extend.js
 │       ├── fetch-stats.js
 │       └── utilities.js
-├── manifest.json
+├── public/
+│   └── manifest.json
 ├── README.md
 ├── .editorconfig
 ├── .prettierrc
