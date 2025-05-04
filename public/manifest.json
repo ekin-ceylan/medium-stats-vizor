@@ -8,11 +8,17 @@
     "content_scripts": [
         {
             "matches": ["https://medium.com/me/stats*"],
-            "js": ["dist/content.bundle.js"],
+            "js": ["./content.bundle.js"],
             "run_at": "document_end"
         }
     ],
     "action": {
         "default_title": "Medium Stats Enhancer"
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "medium-stats@ekinceylan.com",
+            "strict_min_version": "109.0"
+        }
     }
 }

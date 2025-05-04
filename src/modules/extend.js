@@ -1,6 +1,7 @@
 // prettier-ignore
 import { MS_PER_DAY, REFRESH_SVG, ENHANCED_PAGE_STYLES,BUTTON_CLASS_NAME, INFO_SELECTOR, BUTTON_SELECTOR,
-    DOT_SELECTOR, DESKTOP_BREAKPOINT, ACTIVE_CLASS_NAME, ASTERISK_SELECTOR, STYLE_NAME } from './constants.js';
+    DOT_SELECTOR, DESKTOP_BREAKPOINT, ACTIVE_CLASS_NAME, ASTERISK_SELECTOR, STYLE_NAME,
+    LAST_EARN_LABEL, LAST_EARN_SELECTOR } from './constants.js';
 import { injectStyles, createCell, createCellInfo, getUTCMidnight } from './utilities.js';
 import getStats from './fetch-stats.js';
 import Result from '../models/result.js';
@@ -39,7 +40,7 @@ export default function extend() {
 
         const viewCell = createCell(earningCell, 'Views');
         const readCell = createCell(earningCell, 'Reads');
-        const earnCell = createCell(earningCell, 'Last Day');
+        const earnCell = createCell(earningCell, LAST_EARN_LABEL);
 
         earningCell.parentNode.insertBefore(viewCell, earningCell);
         earningCell.parentNode.insertBefore(readCell, earningCell);
@@ -92,7 +93,7 @@ function updateResults(row, results) {
     }
 
     if (results.YesterdayMemberReads) {
-        const lastCell = row.querySelector('.last-day');
+        const lastCell = row.querySelector(LAST_EARN_SELECTOR);
         lastCell.innerHTML = createCellInfo(results.TxtEarns, results.YesterdayMemberReads);
     }
 }

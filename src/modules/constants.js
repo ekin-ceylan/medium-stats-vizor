@@ -45,3 +45,6 @@ export const BUTTON_SELECTOR = `.${BUTTON_CLASS_NAME}`;
 export const ASTERISK_SELECTOR = '[aria-label="Member-only story"]';
 export const INFO_SELECTOR = 'p, span';
 export const DOT_SELECTOR = 'div:nth-child(2)';
+
+export const LAST_EARN_LABEL = 'Last Earns';
+export const LAST_EARN_SELECTOR = '.' + LAST_EARN_LABEL.toLowerCase().replace(/\s+/g, '-');
