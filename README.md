@@ -1,4 +1,4 @@
-# Medium Stats Enhancer
+# Medium Stats Vizor
 
 Enhances Medium's stats page by displaying real-time "Today Views", "Today Reads", and "Yesterday Earnings" for each story — without leaving the page.
 
@@ -11,7 +11,7 @@ Enhances Medium's stats page by displaying real-time "Today Views", "Today Reads
 -   Fetches and updates the data in real-time without refreshing the page.
 -   Lightweight and integrates smoothly with Medium's original design.
 
-![Medium Stats Enhancer Screenshot](src/images/screenshot.png)
+![Medium Stats Vizor Screenshot](src/images/screenshot.png)
 
 ## 🚀 Quick Start (Local Installation)
 
@@ -20,8 +20,8 @@ Enhances Medium's stats page by displaying real-time "Today Views", "Today Reads
 ### 1. Clone the repository
 
 ```
-git clone https://github.com/ekin-ceylan/medium-stats-enhancer.git
-cd medium-stats-enhancer
+git clone https://github.com/ekin-ceylan/medium-stats-vizor.git
+cd medium-stats-vizor
 ```
 
 ### 2. Install dependencies and build
@@ -67,7 +67,7 @@ npm run build
 ## 📦 Project Structure
 
 ```
-medium-stats-enhancer/
+medium-stats-vizor/
 ├── src/
 │   ├── main.js               # Entry point
 │   ├── images/
