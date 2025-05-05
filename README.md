@@ -110,6 +110,7 @@ If you would like to contribute:
 -   Adding better error handling (retry on failure)
 -   Chrome Web Store and Firefox Add-ons publication
 -   RefreshAll Button
+-   Mobile Usage
 
 ## 📜 License
 
