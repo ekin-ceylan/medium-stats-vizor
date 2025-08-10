@@ -8,13 +8,18 @@
 ## Project Structure
 ```plaintext
 medium-stats-vizor/
-├── src/                  # Source code (JavaScript modules, constants, utils)
+├── src/                  # Source code (main logic, modules, models, images)
+│   ├── main.js           # Entry point
+│   ├── modules/          # Helper modules (constants, utilities, fetch-stats, etc.)
+│   ├── models/           # Data models (e.g., result.js)
+│   ├── images/           # Images used in the extension
 ├── public/               # Static assets (icons, manifest templates)
+│   ├── icons/            # Extension icons
+│   ├── manifest.json     # Manifest file for the extension
 ├── dist/                 # Build output (generated after running build)
-├── package.json
-├── manifest.firefox.json # Manifest template for Firefox
-├── README.md
-└── build.js              # Build script (bundles and copies files)
+├── package.json          # Project metadata and dependencies
+├── README.md             # Project documentation
+└── BUILD_INSTRUCTIONS.md # Build instructions for the project
 ```
 
 ## Build Steps
@@ -29,7 +34,7 @@ npm run build
 ```
 - Bundles all JavaScript from `src/` into `dist/content.bundle.js` using **esbuild**.
 - Copies icons and other static assets from `public/` into `dist/`.
-- Copies `manifest.firefox.json` into `dist/` as `manifest.json`.
+- Copies `manifest.json` into `dist/` as `manifest.json`.
 
 ## Packaging
 After building, create a signed `.xpi` package:
