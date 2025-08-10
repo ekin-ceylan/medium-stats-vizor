@@ -37,7 +37,7 @@ npm run build
 
 ### 3. Load the extension
 
-#### Firefox
+#### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/512px-Firefox_logo%2C_2019.svg.png" alt="Firefox" width="16" height="16" style="vertical-align: -2"> Firefox
 
 1. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
 2. Click on **"Load Temporary Add-on"**.
@@ -46,7 +46,7 @@ npm run build
 
 > **Note:** This is a temporary installation. The extension will be removed when you close Firefox. You can reload it anytime through `about:debugging`.
 
-#### Chrome
+#### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Google_Chrome_icon_%28March_2011%29.svg/250px-Google_Chrome_icon_%28March_2011%29.svg.png" alt="Firefox" width="16" height="16" style="vertical-align: -2"> Chrome
 
 1. Open Chrome and go to `chrome://extensions/`.
 2. Enable Developer mode (top right).
