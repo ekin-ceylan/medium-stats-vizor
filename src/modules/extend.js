@@ -8,7 +8,7 @@ import Result from '../models/result.js';
 
 const isMobile = () => window.innerWidth < DESKTOP_BREAKPOINT;
 const rowQuery = () => (isMobile() ? 'div:has(> a + a) > a' : 'table tbody tr');
-const detailsQuery = () => (isMobile() ? '.ab.q' : 'td:nth-child(2) > a > div > div > p > div');
+const detailsQuery = () => (isMobile() ? '.ab.q' : 'td:nth-child(2) > a > div > div > div > div');
 const viewQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(1)' : 'td:nth-child(3)');
 const readQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(2)' : 'td:nth-child(4)');
 const earningQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(3)' : 'td:nth-child(5)');

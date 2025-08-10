@@ -30,6 +30,7 @@ td p, a span {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }`;
+
 export const REFRESH_SVG = `<svg viewBox="0 0 489.698 489.698" height="16px" width="16px" fill="#6b6b6b">
     <g>
         <g>

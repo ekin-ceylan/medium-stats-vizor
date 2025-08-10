@@ -16,6 +16,6 @@ function observePageChanges() {
 }
 
 window.addEventListener('load', () => {
-    setTimeout(extend, 500); // Run for the first time
+    setTimeout(extend, 1000); // Run for the first time
     observePageChanges(); // Watch for changes in the DOM
 });
