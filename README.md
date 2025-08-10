@@ -4,6 +4,8 @@ Enhances Medium's stats page by displaying real-time "Today Views", "Today Reads
 
 > ⚠️ **Disclaimer:** This tool is unofficial and not affiliated with Medium. It only reads publicly available data from your own account for convenience.
 
+<br/>
+
 ## ✨ Features
 
 -   Adds **Today Views** and **Today Reads (Member)** next to each story
@@ -12,6 +14,8 @@ Enhances Medium's stats page by displaying real-time "Today Views", "Today Reads
 -   Lightweight and integrates smoothly with Medium's original design.
 
 ![Medium Stats Vizor Screenshot](src/images/screenshot.png)
+
+<br/>
 
 ## 🚀 Quick Start (Local Installation)
 
@@ -38,6 +42,7 @@ npm run build
 1. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
 2. Click on **"Load Temporary Add-on"**.
 3. Select the `manifest.json` file inside the `/dist` folder.
+4. Go to your Medium Stats page: [`https://medium.com/me/stats`](https://medium.com/me/stats) and click **"Always Allow"** from extension settings.
 
 > **Note:** This is a temporary installation. The extension will be removed when you close Firefox. You can reload it anytime through `about:debugging`.
 
@@ -47,6 +52,8 @@ npm run build
 2. Enable Developer mode (top right).
 3. Click on **"Load unpacked"**.
 4. Select the `/dist` folder
+
+<br/>
 
 ## 📖 Usage
 
@@ -63,6 +70,8 @@ npm run build
     Displays the total number of reads today (including both members and non-members), with member reads shown in parentheses.
 -   **Yesterday Earnings:** _Last Earns (Member Reads)_  
     Displays the Revenue from member reads yesterday, with member reads shown in parentheses.
+
+<br/>
 
 ## 📦 Project Structure
 
@@ -93,6 +102,8 @@ medium-stats-vizor/
 └── .gitignore
 ```
 
+<br/>
+
 ## 🤝 Contributing
 
 Contributions are welcome!
@@ -105,12 +116,16 @@ If you would like to contribute:
 
 > For major changes, please open an issue first to discuss what you would like to change.
 
+<br/>
+
 ## 🛣️ Roadmap
 
 -   Adding better error handling (retry on failure)
 -   Chrome Web Store and Firefox Add-ons publication
 -   RefreshAll Button
 -   Mobile Usage
+
+<br/>
 
 ## 📜 License
 
