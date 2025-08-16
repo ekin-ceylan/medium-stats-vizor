@@ -1,6 +1,6 @@
 {
     "name": "medium-stats-vizor",
-    "version": "0.0.2",
+    "version": "1.0.2",
     "description": "Enhances Medium's stats page by adding real-time \"Today Views\" and \"Today Reads\" information for each story.\r The extension seamlessly adds today’s statistics to your Medium stories without altering the page layout.\r > ⚠️ **Disclaimer:** This tool is unofficial and not affiliated with Medium. It only reads publicly available data from your own account for convenience.",
     "main": "main.js",
     "scripts": {
