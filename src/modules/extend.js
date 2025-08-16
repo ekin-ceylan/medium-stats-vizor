@@ -2,19 +2,37 @@
 import { MS_PER_DAY, REFRESH_SVG, ENHANCED_PAGE_STYLES,BUTTON_CLASS_NAME, INFO_SELECTOR, BUTTON_SELECTOR,
     DOT_SELECTOR, DESKTOP_BREAKPOINT, ACTIVE_CLASS_NAME, ASTERISK_SELECTOR, STYLE_NAME,
     LAST_EARN_LABEL, LAST_EARN_SELECTOR } from './constants.js';
-import { injectStyles, createCell, createCellInfo, getUTCMidnight } from './utilities.js';
+import { injectStyles, createCell, createHeaderCell, createCellInfo, getUTCMidnight } from './utilities.js';
 import getStats from './fetch-stats.js';
 import Result from '../models/result.js';
 
 const isMobile = () => window.innerWidth < DESKTOP_BREAKPOINT;
 const rowQuery = () => (isMobile() ? 'div:has(> a + a) > a' : 'table tbody tr');
-const detailsQuery = () => (isMobile() ? '.ab.q' : 'td:nth-child(2) > a > div > div > div > div');
+const detailsQuery = () => (isMobile() ? '.ac.r' : 'td:nth-child(2) > a > div > div > div > div');
+const headViewQuery =  'th:nth-child(3)';
 const viewQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(1)' : 'td:nth-child(3)');
 const readQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(2)' : 'td:nth-child(4)');
+const headEarningQuery =  'th:nth-child(5)';
 const earningQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(3)' : 'td:nth-child(5)');
 
 export default function extend() {
     const rows = document.querySelectorAll(rowQuery());
+    const trs = document.querySelectorAll('thead tr');
+
+    trs.forEach(tr => {
+        if (tr.classList.contains('has-enhanced-stats')) return;
+
+        const headView = tr.querySelector(headViewQuery);
+        const headEarning = tr.querySelector(headEarningQuery);
+
+        const headRatio = createHeaderCell(headView, 'Reads / Views');
+        const headLastEarn = createHeaderCell(headView, LAST_EARN_LABEL);
+
+        // headLastEarn elementini headEarning elementinin önüne ekle
+        tr.insertBefore(headLastEarn, headEarning);
+        tr.insertBefore(headRatio, headView);
+        tr.classList.add('has-enhanced-stats');
+    });
 
     rows.forEach(row => {
         const hasButton = !!row.querySelector(BUTTON_SELECTOR);
@@ -29,10 +47,10 @@ export default function extend() {
         const dot = detailsDiv?.querySelector(DOT_SELECTOR).cloneNode(true);
 
         const views = viewsCell.querySelectorAll(INFO_SELECTOR);
-        const reads = readsCell.querySelectorAll(INFO_SELECTOR);
+        const read = readsCell.querySelector(INFO_SELECTOR);
 
         const viewsCount = Number(views[0]?.innerText || 0);
-        const readsCount = Number(reads[0]?.innerText);
+        const readsCount = Number(read?.innerText || 0);
         const percent = Math.round((readsCount / viewsCount) * 100);
         const percentText = isNaN(percent) ? '-' : `${percent}%`;
 
@@ -47,7 +65,7 @@ export default function extend() {
         earningCell.parentNode.insertBefore(earnCell, earningCell);
 
         views[0].innerHTML = createCellInfo(percentText, `${readsCount}/${viewsCount}`);
-        views[1].innerText = 'Reads / Views';
+        views[1] && (views[1].innerText = 'Reads / Views');
         readsCell.remove();
 
         detailsDiv.appendChild(dot);

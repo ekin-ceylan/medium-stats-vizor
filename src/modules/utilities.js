@@ -6,7 +6,16 @@ export function createCell(template, text) {
     const contents = cell.querySelectorAll(INFO_SELECTOR);
     contents[0].classList.add(className);
     contents[0].innerText = '-';
-    contents[1].innerText = text;
+    contents[1] && (contents[1].innerText = text);
+
+    return cell;
+}
+
+export function createHeaderCell(template, text) {
+    const cell = template.cloneNode(true);
+    cell.style.minWidth = '120px';
+    const content = cell.querySelector(INFO_SELECTOR);
+    content.innerText = text;
 
     return cell;
 }
