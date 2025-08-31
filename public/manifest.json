@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Medium Stats Enhancer",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Adds 'Today Views', 'Today Reads' and 'Last Earns' columns to Medium Stats, updating them in real-time without reloading.",
     "permissions": [],
     "host_permissions": ["https://medium.com/*"],
