@@ -8,12 +8,12 @@ import Result from '../models/result.js';
 
 const isMobile = () => window.innerWidth < DESKTOP_BREAKPOINT;
 const rowQuery = () => (isMobile() ? 'div:has(> a + a) > a' : 'table tbody tr');
-const detailsQuery = () => (isMobile() ? '.ac.r' : 'td:nth-child(2) > a > div > div > div > div');
+const detailsQuery = () => (isMobile() ? '.ac.r' : 'td:nth-child(1) > a > div > div > div > div');
 const headViewQuery =  'th:nth-child(3)';
-const viewQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(1)' : 'td:nth-child(3)');
-const readQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(2)' : 'td:nth-child(4)');
+const viewQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(1)' : 'td:nth-child(2)');
+const readQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(2)' : 'td:nth-child(3)');
 const headEarningQuery =  'th:nth-child(5)';
-const earningQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(3)' : 'td:nth-child(5)');
+const earningQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(3)' : 'td:nth-child(4)');
 
 export default function extend() {
     const rows = document.querySelectorAll(rowQuery());
