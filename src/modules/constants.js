@@ -47,5 +47,23 @@ export const ASTERISK_SELECTOR = '[aria-label="Member-only story"]';
 export const INFO_SELECTOR = 'p, span';
 export const DOT_SELECTOR = 'div:nth-child(2)';
 
+export const ROW_DESKTOP_SELECTOR = 'table tbody tr';
+export const ROW_MOBILE_SELECTOR = 'div.m:has( > a + div.ac > div:nth-child(4))';
+
+export const DETAILS_DESKTOP_SELECTOR = 'td:nth-child(1) > a > div > div > div > div';
+export const DETAILS_MOBILE_SELECTOR = 'a > div > div > div > .ac.r';
+
+export const HEAD_VIEW_QUERY = 'th:nth-child(3)';
+export const HEAD_EARNING_QUERY = 'th:nth-child(5)';
+
+export const VIEW_DESKTOP_SELECTOR = 'td:nth-child(3)';
+export const VIEW_MOBILE_SELECTOR = 'a + div.ac > div:nth-child(2)';
+
+export const READ_DESKTOP_SELECTOR = 'td:nth-child(4)';
+export const READ_MOBILE_SELECTOR = 'a + div.ac > div:nth-child(3)';
+
+export const EARNING_DESKTOP_SELECTOR = 'td:nth-child(5)';
+export const EARNING_MOBILE_SELECTOR = 'a + div.ac > div:nth-child(4)';
+
 export const LAST_EARN_LABEL = 'Last Earns';
-export const LAST_EARN_SELECTOR = '.' + LAST_EARN_LABEL.toLowerCase().replace(/\s+/g, '-');
+export const LAST_EARN_SELECTOR = '.' + LAST_EARN_LABEL.toLowerCase().replaceAll(/\s+/g, '-');

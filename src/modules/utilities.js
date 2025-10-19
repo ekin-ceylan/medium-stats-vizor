@@ -13,7 +13,7 @@ export function createCell(template, text) {
 
 export function createHeaderCell(template, text) {
     const cell = template.cloneNode(true);
-    cell.style.minWidth = '120px';
+    cell.style.minWidth = '130px';
     const content = cell.querySelector(INFO_SELECTOR);
     content.innerText = text;
 

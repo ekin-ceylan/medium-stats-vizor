@@ -1,44 +1,45 @@
 // prettier-ignore
 import { MS_PER_DAY, REFRESH_SVG, ENHANCED_PAGE_STYLES,BUTTON_CLASS_NAME, INFO_SELECTOR, BUTTON_SELECTOR,
     DOT_SELECTOR, DESKTOP_BREAKPOINT, ACTIVE_CLASS_NAME, ASTERISK_SELECTOR, STYLE_NAME,
-    LAST_EARN_LABEL, LAST_EARN_SELECTOR } from './constants.js';
+    LAST_EARN_LABEL, LAST_EARN_SELECTOR, ROW_MOBILE_SELECTOR, ROW_DESKTOP_SELECTOR,
+    DETAILS_MOBILE_SELECTOR, DETAILS_DESKTOP_SELECTOR, HEAD_VIEW_QUERY, HEAD_EARNING_QUERY,
+    VIEW_MOBILE_SELECTOR, VIEW_DESKTOP_SELECTOR, READ_DESKTOP_SELECTOR, READ_MOBILE_SELECTOR,
+    EARNING_DESKTOP_SELECTOR, EARNING_MOBILE_SELECTOR } from './constants.js';
 import { injectStyles, createCell, createHeaderCell, createCellInfo, getUTCMidnight } from './utilities.js';
 import getStats from './fetch-stats.js';
 import Result from '../models/result.js';
 
 const isMobile = () => window.innerWidth < DESKTOP_BREAKPOINT;
-const rowQuery = () => (isMobile() ? 'div:has(> a + a) > a' : 'table tbody tr');
-const detailsQuery = () => (isMobile() ? '.ac.r' : 'td:nth-child(1) > a > div > div > div > div');
-const headViewQuery =  'th:nth-child(3)';
-const viewQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(1)' : 'td:nth-child(2)');
-const readQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(2)' : 'td:nth-child(3)');
-const headEarningQuery =  'th:nth-child(5)';
-const earningQuery = () => (isMobile() ? 'a > div:last-child > div:nth-child(3)' : 'td:nth-child(4)');
+const rowQuery = () => (isMobile() ? ROW_MOBILE_SELECTOR : ROW_DESKTOP_SELECTOR);
+const detailsQuery = () => (isMobile() ? DETAILS_MOBILE_SELECTOR : DETAILS_DESKTOP_SELECTOR);
+const viewQuery = () => (isMobile() ? VIEW_MOBILE_SELECTOR : VIEW_DESKTOP_SELECTOR);
+const readQuery = () => (isMobile() ? READ_MOBILE_SELECTOR : READ_DESKTOP_SELECTOR);
+const earningQuery = () => (isMobile() ? EARNING_MOBILE_SELECTOR : EARNING_DESKTOP_SELECTOR);
 
 export default function extend() {
     const rows = document.querySelectorAll(rowQuery());
     const trs = document.querySelectorAll('thead tr');
 
-    trs.forEach(tr => {
-        if (tr.classList.contains('has-enhanced-stats')) return;
+    for (const tr of trs) {
+        if (tr.classList.contains('has-enhanced-stats')) continue;
 
-        const headView = tr.querySelector(headViewQuery);
-        const headEarning = tr.querySelector(headEarningQuery);
+        const headView = tr.querySelector(HEAD_VIEW_QUERY);
+        const headEarning = tr.querySelector(HEAD_EARNING_QUERY);
 
         const headRatio = createHeaderCell(headView, 'Reads / Views');
         const headLastEarn = createHeaderCell(headView, LAST_EARN_LABEL);
 
         // headLastEarn elementini headEarning elementinin önüne ekle
-        tr.insertBefore(headLastEarn, headEarning);
-        tr.insertBefore(headRatio, headView);
+        headEarning.before(headLastEarn);
+        headView.before(headRatio);
         tr.classList.add('has-enhanced-stats');
-    });
+    }
 
-    rows.forEach(row => {
+    for (const row of rows) {
         const hasButton = !!row.querySelector(BUTTON_SELECTOR);
         const id = getId(row);
 
-        if (hasButton || !id) return;
+        if (hasButton || !id) continue;
 
         const viewsCell = row.querySelector(viewQuery());
         const readsCell = row.querySelector(readQuery());
@@ -52,7 +53,7 @@ export default function extend() {
         const viewsCount = Number(views[0]?.innerText || 0);
         const readsCount = Number(read?.innerText || 0);
         const percent = Math.round((readsCount / viewsCount) * 100);
-        const percentText = isNaN(percent) ? '-' : `${percent}%`;
+        const percentText = Number.isNaN(percent) ? '-' : `${percent}%`;
 
         const button = createButton(row, id);
 
@@ -71,7 +72,7 @@ export default function extend() {
         detailsDiv.appendChild(dot);
         detailsDiv.appendChild(button);
         button.click();
-    });
+    }
 }
 
 async function getData(row, id, isPremium) {
@@ -117,10 +118,7 @@ function updateResults(row, results) {
 }
 
 function getId(row) {
-    const href = isMobile()
-        ? row.getAttribute('href')
-        : row.querySelector('a[href*="/me/stats/post/"]')?.getAttribute('href');
-
+    const href = row.querySelector('a[href*="/me/stats/post/"]')?.getAttribute('href');
     const postIdMatch = href?.match(/\/post\/([^/?]+)/);
 
     return postIdMatch?.[1];
