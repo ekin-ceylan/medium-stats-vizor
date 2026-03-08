@@ -4,7 +4,7 @@ let observer;
 let currentUrl = '';
 
 function isStatsPage() {
-    return window.location.href.includes('/stats');
+    return globalThis.location.href.includes('/stats');
 }
 
 function startExtension() {
@@ -22,8 +22,8 @@ function observePageChanges() {
         for (const mutation of mutationsList) {
             if (mutation.type === 'childList') {
                 // URL değişikliğini kontrol et
-                if (currentUrl !== window.location.href) {
-                    currentUrl = window.location.href;
+                if (currentUrl !== globalThis.location.href) {
+                    currentUrl = globalThis.location.href;
                     // Stats sayfasına geçildiyse extension'ı başlat
                     if (isStatsPage()) {
                         setTimeout(extend, 500);
@@ -47,6 +47,6 @@ function observePageChanges() {
 }
 
 window.addEventListener('load', () => {
-    currentUrl = window.location.href;
+    currentUrl = globalThis.location.href;
     startExtension();
 });
