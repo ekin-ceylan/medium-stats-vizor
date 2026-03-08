@@ -5,7 +5,7 @@ import { MS_PER_DAY, REFRESH_SVG, ENHANCED_PAGE_STYLES,BUTTON_CLASS_NAME, INFO_S
     DETAILS_MOBILE_SELECTOR, DETAILS_DESKTOP_SELECTOR, HEAD_VIEW_QUERY, HEAD_EARNING_QUERY,
     VIEW_MOBILE_SELECTOR, VIEW_DESKTOP_SELECTOR, READ_DESKTOP_SELECTOR, READ_MOBILE_SELECTOR,
     EARNING_DESKTOP_SELECTOR, EARNING_MOBILE_SELECTOR } from './constants.js';
-import { injectStyles, createCell, createHeaderCell, createCellInfo, getUTCMidnight } from './utilities.js';
+import { injectStyles, createCell, createHeaderCell, createCellInfo, getUTCMidnight, parseCount } from './utilities.js';
 import getStats from './fetch-stats.js';
 import Result from '../models/result.js';
 
@@ -50,8 +50,10 @@ export default function extend() {
         const views = viewsCell.querySelectorAll(INFO_SELECTOR);
         const read = readsCell.querySelector(INFO_SELECTOR);
 
-        const viewsCount = Number(views[0]?.innerText || 0);
-        const readsCount = Number(read?.innerText || 0);
+        const viewsText = views[0]?.innerText;
+        const readsText = read?.innerText;
+        const viewsCount = parseCount(viewsText);
+        const readsCount = parseCount(readsText);
         const percent = Math.round((readsCount / viewsCount) * 100);
         const percentText = Number.isNaN(percent) ? '-' : `${percent}%`;
 
@@ -65,7 +67,7 @@ export default function extend() {
         earningCell.parentNode.insertBefore(readCell, earningCell);
         earningCell.parentNode.insertBefore(earnCell, earningCell);
 
-        views[0].innerHTML = createCellInfo(percentText, `${readsCount}/${viewsCount}`);
+        views[0].innerHTML = createCellInfo(percentText, `${readsText}/${viewsText}`);
         views[1] && (views[1].innerText = 'Reads / Views');
         readsCell.remove();
 
